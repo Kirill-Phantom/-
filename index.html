@@ -92,11 +92,8 @@
     </div>
 
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js"></script>
-    
     <script type="module">
-        // Импортирование нужных модулей
+        // Импортирование модулей Firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js";
 
@@ -105,7 +102,7 @@
             apiKey: "AIzaSyByAY6msOFIZpfco-cBt26L0rRDw3grh2w",
             authDomain: "depozit-ug-team.firebaseapp.com",
             projectId: "depozit-ug-team",
-            storageBucket: "depozit-ug-team.firebasestorage.app",
+            storageBucket: "depozit-ug-team.appspot.com",
             messagingSenderId: "357271165821",
             appId: "1:357271165821:web:103e11f694a50a56ce8a14"
         };
@@ -115,7 +112,7 @@
         const auth = getAuth(app);
 
         // Функция входа
-        function login() {
+        window.login = function() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('error-message');
@@ -131,10 +128,10 @@
                     const errorMessageText = error.message;
                     errorMessage.innerText = "Невірний email або пароль.";
                 });
-        }
+        };
 
         // Функция для расчета
-        function calculate() {
+        window.calculate = function() {
             const amountInput = document.getElementById("amount");
             const selectedOption = document.getElementById("options");
             const amount = parseFloat(amountInput.value);
@@ -152,7 +149,7 @@
 
             document.getElementById("result").innerText = 
                 `Підсумкова сума: ₴${result.toFixed(2)}`;
-        }
+        };
     </script>
 </body>
 </html>
