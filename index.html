@@ -95,7 +95,11 @@
     <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js"></script>
     
-    <script>
+    <script type="module">
+        // Импортирование нужных модулей
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js";
+
         // Конфигурация Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyByAY6msOFIZpfco-cBt26L0rRDw3grh2w",
@@ -107,8 +111,8 @@
         };
 
         // Инициализация Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
 
         // Функция входа
         function login() {
@@ -116,7 +120,7 @@
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('error-message');
 
-            auth.signInWithEmailAndPassword(email, password)
+            signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     const user = userCredential.user;
                     document.getElementById('login-form').style.display = 'none';
